@@ -1,5 +1,5 @@
 import { starships } from '../data/starships.js'
-import { removeChildren } from '../main.js'
+import { removeChildren, getLastNumber } from '../main.js'
 
 
 const nav = document.querySelector('.nav')
@@ -8,11 +8,25 @@ const navList = document.querySelector('.navlist')
 
 const shipView = document.querySelector('main')
 
+const modalDialog = document.querySelector('.modal')
+const modalButton = document.querySelector('.modal-close')
+const madalBackground = document.querySelector('.modal-background')
+const modalMessage = document.querySelector('.dialogMessage')
+
+modalButton.addEventListener('click', () => {
+    modalDialog.classList.toggle("is-active")
+})
+
+madalBackground.addEventListener('click', () => {
+    modalDialog.classList.toggle("is-active")
+})
+
 function populateNav(starships) {
-    starships.forEach(starship => {
+    starships.forEach(starships => {
         let shipAnchor = document.createElement('a')
+        shipAnchor.href = '#'
         let listItem = document.createElement('li')
-        listItem.textContent = starship.name
+        listItem.textContent = starships.name
 
         shipAnchor.addEventListener('click', event => {
             // store the name of the list item clicked on 
@@ -34,6 +48,12 @@ function populateShipView(shipData) {
     let imageNum = getLastNumber(shipData.url)
     let shipImage = document.createElement('img')
     shipImage.src = `https:starwars-visualguide.com/assets/img/starships/${imageNum}.jpg`
+
+    shipImage.addEventListener('error', event => {
+        shipImage.hidden = true
+        modalDialog.classList.toggle("is-active")
+        modalMessage.textContent = `Sorry, We could not find the image for ${shipData.name}.`
+    })
     shipView.appendChild(shipImage)
 
 }
