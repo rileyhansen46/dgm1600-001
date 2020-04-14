@@ -51,8 +51,8 @@ h1, h3 {
     width: fit-content;
 }
 
-#pictures {
-    max-width: 100px;
+.pictures {
+    max-width: 200px;
 }
 
 #contact{
