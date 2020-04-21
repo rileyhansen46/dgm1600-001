@@ -22,9 +22,9 @@ async function getAPIData(url) {
 
 function loadPage() {
   getAPIData('https://pokeapi.co/api/v2/pokemon/?&limit=25').then(
-    (data) => {
+    async (data) => {
       for (const pokemon of data.results) {
-        getAPIData(pokemon.url).then(
+        await getAPIData(pokemon.url).then(
           (pokeData) => {
             populatePokeCard(pokeData)
           }
@@ -75,16 +75,34 @@ function getImageFileName(pokemon) {
 function populateCardBack(pokemon) {
   let cardBack = document.createElement('div')
   cardBack.className = 'card__face card__face--back'
-  cardBack.textContent = pokemon.stats[0].stat.name
+  let abilityList = document.createElement('ul')
+  abilityList.textContent = 'Abilities:'
+  pokemon.abilities.forEach(ability => {
+    let abilityName = document.createElement('li')
+    abilityName.textContent = ability.ability.name
+    abilityList.appendChild(abilityName)
+  })
+  let moveList = document.createElement('p')
+  moveList.textContent = `Level 0 Moves: ${getPokemonMoves(pokemon, 0).length}`
+  cardBack.appendChild(abilityList)
+  cardBack.appendChild(moveList)
   return cardBack
 }
 
+function getPokemonMoves(pokemon, levelLearnedAt) {
+  //console.log(`Name: ${pokemon.name} Number of Moves: ${pokemon.moves.length}`)
+  return pokemon.moves.filter(move => {
+    return move.version_group_details[0].level_learned_at === levelLearnedAt
+  })
+}
+
 class Pokemon {
-  constructor(height, weight, name, stats) {
+  constructor(height, weight, name, abilities, moves) {
     this.height = height
     this.weight = weight
     this.name = name
-    this.stats = stats
+    this.abilities = abilities
+    this.moves = moves
     this.id = 900
   }
 }
@@ -92,8 +110,24 @@ class Pokemon {
 function addPokemon() {
   let newPokemon = new Pokemon(50, 25, 'Thoremon', [
     {
-      stat:
+      ability:
         { name: 'Thunder Belly' }
-    }])
+    },
+    {  ability:
+        { name: 'Lightining Fingers' }
+    }
+  ],
+    [
+      {
+        move: {
+          name: "Breaking-Wind"
+        },
+        version_group_details: [
+          {
+          level_learned_at: 0
+          }
+        ]
+      }
+    ])
   populatePokeCard(newPokemon)
 }
