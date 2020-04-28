@@ -30,7 +30,6 @@ header {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      
   }
   
   .scene {
@@ -50,6 +49,7 @@ header {
     cursor: pointer;
     position: relative;
     
+    
   }
   
   .card.is-flipped {
@@ -62,13 +62,15 @@ header {
     height: 100%;
     color: white;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     backface-visibility: hidden;
     border-radius: 30px;
+    padding: 10px;
   }
   
   .card__face--front {
-    background: red;
+    background-image: url(../images/plain.jpeg);
+  
   }
   
   .card__face--back {
