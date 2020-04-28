@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Starships</title>
-    
-</head>
-<body>
-    <header>
-        <h1>The Starships of Starwars</h1>
+    <link href="starships.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="is-size-1">
+      <h1>The Starships of Star Wars</h1>
     </header>
+    <!-- Brought in this modal from Bulma -->
     <div class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="card">
-                <div class="card-content">
-                    <h2 class="dialogMessage is size-2"></h2>
-                </div>
-
-             </div>
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="card">
+          <div class="card-content">
+            <h2 class="dialogMessage is-size-2"></h2>
+          </div>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
-    <div class="content">
-        <nav class="nav">
-            <ul class="nav list"></ul>
-
-        </nav>
-        <main id="main"></main>
+    <!-- End modal code, begin my layout-->
+    <div class="container">
+      <nav class="nav">
+        <ul class="navList"></ul>
+      </nav>
+      <main id="main">
+        <div class="shipView"></div>
+      </main>
     </div>
-    <footer>
-        <p>&copy; Riley Hansen Designs 2020</p>
+    <footer class="is-size-3">
+      <p>&copy; Riley Hansen Designs, 2020</p>
     </footer>
-    <script src="starships.js" type="module"></script>
-    
-</body>
+    <script type="module" src="starships.js"></script>
+  </body>
 </html>
