@@ -3,25 +3,13 @@
     flex-wrap: wrap;
 }
 
-#navbar {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    background-color: #87D4FF;
-}
-
-.nav-list {
-    display: flex;
-    list-style-type: none;
-    font-size: 1rem;
-    font-weight: 400;
-}
-
-.nav-list a {
-    display: block;
-    font-size: 2rem;
-    padding: 1rem;
-    text-decoration: none;
+button {
+    height: 3rem;
+    border-radius: 10px;
+    font-size: larger;
+    background-color: #b9f45a;
+    color: #a7d;
+    font-weight: 600;
 }
 
 h1 {
@@ -31,4 +19,15 @@ h1 {
 figure{
     border: 2px solid black;
     border-radius: 3px;
+}
+
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    height: 60px;
+    background-color: #87D4FF;
+    color: black;
 }
